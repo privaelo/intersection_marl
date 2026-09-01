@@ -1,0 +1,2 @@
+junction_radius,conflict_ttc,release_margin,occupied_radius,conflict_radius,min_closing,tie_eps,match_eps,seed_offset,episodes,collision_rate_pct,collision_rate_lo_pct,collision_rate_hi_pct,per_agent_collision_rate_pct,per_agent_collision_rate_lo_pct,per_agent_collision_rate_hi_pct,arrival_rate_pct,arrival_rate_lo_pct,arrival_rate_hi_pct,timeout_rate_pct,timeout_rate_lo_pct,timeout_rate_hi_pct,avg_time_to_cross_s
+20.0,2.0,0.5,18.0,4.0,0.5,0.5,1.0,0,300,21.0,16.8,26.0,11.5,9.2,14.3,87.8,85.0,90.2,0.7,0.3,1.7,8.5
