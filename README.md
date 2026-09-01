@@ -25,7 +25,7 @@ Rule-based logic with reactive agents, built from four interacting rules:
 
 Thresholds are parameters of `make_rule_policy(...)`, not module constants, so they can be swept; the defaults are the setting the sweep below selected.
 
-**Results (300 episodes, 95% Wilson intervals):**
+**Results (300 episodes):**
 
 | Metric | Value |
 |---|---|
@@ -50,9 +50,11 @@ Because these thresholds were chosen on these 300 episodes, the rule was re-chec
 
 #### Threshold sweep
 
-`phase1_sweep.py` grids the three thresholds that shape the safety/latency trade-off — `conflict_ttc` (2–5s), `release_margin` (0.5–3s), and `occupied_radius` (12–18m) — at 36 cells × 300 episodes, every cell replaying the same episodes so the cells differ only by policy.
+`phase1_sweep.py` grids the three thresholds that shape the safety/latency trade-off: `conflict_ttc` (2–5s), `release_margin` (0.5–3s), and `occupied_radius` (12–18m). At 36 cells × 300 episodes, every cell replaying the same episodes so the cells differ only by policy.
 
 ![Phase 1 sweep Pareto frontier](./output/phase1_frontier.png)
+
+**The frontier is a single point,** because the two objectives turn out not to be in tension: the safest setting is also the fastest
 
 <!--**The frontier is a single point,** because the two objectives turn out not to be in tension: the safest setting is also the fastest. Collision rate and crossing time rise together with `conflict_ttc`, from 21.0% / 8.50s at 2s to ~30% / 11s at 5s. More caution buys no safety here — braking early in an intersection leaves the agent stopped in the conflict zone for longer, which creates more exposure than the earlier brake removes. The winning cell (`conflict_ttc=2`, `release_margin=0.5`, `occupied_radius=18`) dominates all 35 others and is the module default.
 
