@@ -23,7 +23,11 @@ def run_episodes(env, policy_fn, n_episodes=300, max_steps=50, seed_offset=0):
 
             for i in range(2):
                 if agent_done_step[i] is None and terminated[i]:
-                    agent_done_step[i] = step
+                    # step + 1, not step: env.step has already advanced the clock,
+                    # so this counts policy steps elapsed rather than the loop
+                    # index. An agent finishing on the first iteration has lived
+                    # one step, not zero.
+                    agent_done_step[i] = step + 1
                     # terminated[i] = crashed or has_arrived, so the crash flag decides.
                     # (Reward sign is unreliable: an off-road crash scores 0.0.)
                     crashed = env.unwrapped.controlled_vehicles[i].crashed
