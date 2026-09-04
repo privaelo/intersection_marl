@@ -54,10 +54,13 @@ def train_step(q_net, target_net, optimizer, buffer, batch_size, gamma=0.99):
         max_next_q = next_q_values.max(dim=1).values
         target = rewards + gamma * max_next_q * (1 - dones)
 
-    loss = nn.functional.mse_loss(q_taken, target)
+    # Huber rather than MSE: collision_reward is -5 against arrivals of +1, so a
+    # squared TD error of ~25 from one crash would dominate the whole batch
+    loss = nn.functional.smooth_l1_loss(q_taken, target)
 
     optimizer.zero_grad()
     loss.backward()
+    nn.utils.clip_grad_norm_(q_net.parameters(), 10.0)
     optimizer.step()
 
     return loss.item()
