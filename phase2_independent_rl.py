@@ -33,9 +33,7 @@ N_ACTIONS = 3
 # The observation has see_behind disabled, so an agent's 15 rows can leave the
 # other controlled agent out entirely — they often cannot see each other at all.
 # Setting this True appends the other agent's 7-feature ego row, which tests
-# whether that blind spot is what caps performance. It isn't: the collision rate
-# came out the same either way (see the README), so the reported Phase 2 result
-# is the plain decentralized one and the default stays False.
+# whether that blind spot is what caps performance. 
 INCLUDE_OTHER_AGENT = False
 OBS_DIM = 105 + (7 if INCLUDE_OTHER_AGENT else 0)
 

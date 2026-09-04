@@ -34,7 +34,7 @@ Rule-based logic with reactive agents, built from four interacting rules:
 | Collision rate | 21.0% |
 | Arrival rate (per agent) | 87.8% |
 | Timeout rate (per agent) | 0.7% |
-| Avg. time-to-cross | 8.50s |
+| Avg. time-to-cross | 9.50s |
 
 
 ### Threshold sweep
@@ -67,9 +67,9 @@ The replay buffer is kept small on purpose. Under independent learning the *othe
 | Collision rate | 19.7% [15.6, 24.5] |
 | Arrival rate (per agent) | 89.2% [86.4, 91.4] |
 | Timeout rate (per agent) | 0.5% [0.2, 1.5] |
-| Avg. time-to-cross | 8.07s |
+| Avg. time-to-cross | 9.07s |
 
-Held out on 300 unseen episodes (seeds 1000–1299): collision 20.0% [15.9, 24.9], arrival 89.7%, 7.95s to cross. The policy generalizes.
+Held out on 300 unseen episodes (seeds 1000–1299): collision 20.0% [15.9, 24.9], arrival 89.7%, 8.95s to cross. The policy generalizes.
 
 ![Phase 2 learning curve](./output/phase2_learning_curve.png)
 
@@ -85,8 +85,8 @@ All rows are 300 episodes on the same seeds (0–299), scored by the same evalua
 
 | Phase | Collision Rate | Arrival Rate | Timeout Rate | Avg. Time-to-Cross |
 |---|---|---|---|---|
-| 1. Rule-based | 21.0% [16.8, 26.0] | 87.8% | 0.7% | 8.50s |
-| 2. Independent DQN | 19.7% [15.6, 24.5] | 89.2% | 0.5% | 8.07s |
+| 1. Rule-based | 21.0% [16.8, 26.0] | 87.8% | 0.7% | 9.50s |
+| 2. Independent DQN | 19.7% [15.6, 24.5] | 89.2% | 0.5% | 9.07s |
 | 3. Cooperative MARL | TBD | TBD | TBD | TBD |
 
 
@@ -116,7 +116,6 @@ intersection-marl/
 ```bash
 python phase1_rule_based.py       # evaluation + sample-episode GIF
 python phase1_sweep.py            # threshold sweep, frontier CSVs + plot (~17 min)
-python phase2_independent_rl.py --smoke   # 30-episode pipeline check (~30s)
 python phase2_independent_rl.py   # train two independent DQNs (~1 hour)
 python phase3_marl_joint.py
 ```
